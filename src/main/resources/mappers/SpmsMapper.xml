@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.SpmsMapper">
+
+	<!-- sql -->
+	<select id="list" resultType="SpmsVO">
+		select * from spms order by no desc limit #{page}, #{perPageNum}
+	</select>
+	
+	<select id="selectByNo" resultType="SpmsVO">
+		select * from spms where no=#{no}
+	</select>
+	
+	<select id="listCount" resultType="int">
+		select count(no) from spms
+	</select>
+	
+	<insert id="insert" parameterType="SpmsVO">
+		insert into spms value(
+			null, #{name}, #{content}, #{startdate}, #{enddate}, #{progress})
+	</insert>
+	
+	<update id="update" parameterType="SpmsVO">
+		update spms 
+			set name=#{name}, content=#{content}, startdate=#{startdate}, enddate=#{enddate}, progress=#{progress}
+			where no=#{no}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from spms where no=#{no}
+	</delete>
+</mapper>
